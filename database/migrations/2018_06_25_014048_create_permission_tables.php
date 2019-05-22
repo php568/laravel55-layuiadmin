@@ -23,6 +23,7 @@ class CreatePermissionTables extends Migration
             $table->string('route')->nullable()->comment('路由名称');
             $table->integer('icon_id')->nullable()->comment('图标ID');
             $table->integer('parent_id')->default(0);
+            $table->integer('is_display')->default(1)->comment('是否显示');
             $table->integer('sort')->default(0)->comment('排序');
             $table->timestamps();
         });

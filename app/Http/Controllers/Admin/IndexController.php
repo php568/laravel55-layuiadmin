@@ -26,6 +26,7 @@ class IndexController extends Controller
      */
     public function index()
     {
+        return "管理后台首页 - 暂无数据";
         return view('admin.index.index');
     }
     public function index1()

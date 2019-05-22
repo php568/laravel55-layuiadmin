@@ -22,8 +22,8 @@ class MemberController extends Controller
     public function data(Request $request)
     {
         $model = Member::query();
-        if ($request->get('name')){
-            $model = $model->where('name','like','%'.$request->get('name').'%');
+        if ($request->get('real_name')){
+            $model = $model->where('real_name','like','%'.$request->get('real_name').'%');
         }
         if ($request->get('phone')){
             $model = $model->where('phone','like','%'.$request->get('phone').'%');

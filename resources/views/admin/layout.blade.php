@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layuiAdmin std - 通用后台管理模板系统（iframe标准版）</title>
+    <title>后台管理系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                    <a href="/" target="_blank" title="前台">
                         <i class="layui-icon layui-icon-website"></i>
                     </a>
                 </li>
@@ -39,15 +39,17 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
-                <li class="layui-nav-item" lay-unselect>
-                    <a lay-href="{{route('admin.message.mine')}}" layadmin-event="message" lay-text="消息中心">
-                        <i class="layui-icon layui-icon-notice"></i>
-                        <!-- 如果有新消息，则显示小圆点 -->
-                        @if($unreadMessage)
-                        <span class="layui-badge-dot"></span>
-                        @endif
-                    </a>
-                </li>
+
+                {{--<li class="layui-nav-item" lay-unselect>--}}
+                    {{--<a lay-href="{{route('admin.message.mine')}}" layadmin-event="message" lay-text="消息中心">--}}
+                        {{--<i class="layui-icon layui-icon-notice"></i>--}}
+                        {{--<!-- 如果有新消息，则显示小圆点 -->--}}
+                        {{--@if($unreadMessage)--}}
+                        {{--<span class="layui-badge-dot"></span>--}}
+                        {{--@endif--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
                     <a href="javascript:;" layadmin-event="theme">
                         <i class="layui-icon layui-icon-theme"></i>
@@ -76,7 +78,7 @@
                 </li>
 
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+                    <a href="javascript:;" layadmin-event="about1"><i class="layui-icon layui-icon-more-vertical"></i></a>
                 </li>
                 <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
                     <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
@@ -101,16 +103,17 @@
                             <dd data-name="console" class="layui-this">
                                 <a lay-href="{{route('admin.index')}}">控制台</a>
                             </dd>
-                            <dd data-name="console">
-                                <a lay-href="{{route('admin.index1')}}">主页一</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="{{route('admin.index2')}}">主页二</a>
-                            </dd>
+                            {{--<dd data-name="console">--}}
+                                {{--<a lay-href="{{route('admin.index1')}}">主页一</a>--}}
+                            {{--</dd>--}}
+                            {{--<dd data-name="console">--}}
+                                {{--<a lay-href="{{route('admin.index2')}}">主页二</a>--}}
+                            {{--</dd>--}}
                         </dl>
                     </li>
                     @foreach($menus as $menu)
                         @can($menu->name)
+                        @if($menu->is_display)
                         <li data-name="{{$menu->name}}" class="layui-nav-item">
                             <a href="javascript:;" lay-tips="{{$menu->display_name}}" lay-direction="2">
                                 <i class="layui-icon {{$menu->icon->class??''}}"></i>
@@ -120,14 +123,17 @@
                             <dl class="layui-nav-child">
                                 @foreach($menu->childs as $subMenu)
                                     @can($subMenu->name)
+                                    @if($subMenu->is_display)
                                     <dd data-name="{{$subMenu->name}}" >
                                         <a lay-href="{{ route($subMenu->route) }}">{{$subMenu->display_name}}</a>
                                     </dd>
+                                    @endif
                                     @endcan
                                 @endforeach
                             </dl>
                             @endif
                         </li>
+                        @endif
                         @endcan
                     @endforeach
                 </ul>

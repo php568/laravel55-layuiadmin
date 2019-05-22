@@ -14,7 +14,7 @@
             </div>
             <div class="layui-form">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" id="name" placeholder="请输入昵称" class="layui-input">
+                    <input type="text" name="real_name" id="real_name" placeholder="请输入姓名" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                     <input type="text" name="phone" id="phone" placeholder="请输入手机号" class="layui-input">
@@ -57,11 +57,11 @@
                     ,cols: [[ //表头
                         {checkbox: true,fixed: true}
                         ,{field: 'id', title: 'ID', sort: true,width:80}
-                        ,{field: 'name', title: '昵称'}
-                        ,{field: 'phone', title: '手机'}
-                        ,{field: 'avatar', title: '头像',toolbar:'#avatar',width:100}
+                        ,{field: 'real_name', title: '姓名'}
+                        ,{field: 'phone', title: '手机号'}
+                        ,{field: 'level', title: '级别'}
+                        ,{field: 'sex', title: '性别'}
                         ,{field: 'created_at', title: '创建时间'}
-                        ,{field: 'updated_at', title: '更新时间'}
                         ,{fixed: 'right', width: 120, align:'center', toolbar: '#options'}
                     ]]
                 });
@@ -112,10 +112,10 @@
                 //搜索
                 $("#memberSearch").click(function () {
                     var userSign = $("#user_sign").val()
-                    var name = $("#name").val();
+                    var real_name = $("#real_name").val();
                     var phone = $("#phone").val();
                     dataTable.reload({
-                        where:{user_sign:userSign,name:name,phone:phone},
+                        where:{user_sign:userSign,real_name:real_name,phone:phone},
                         page:{curr:1}
                     })
                 })

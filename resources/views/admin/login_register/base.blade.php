@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +16,16 @@
 
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>layuiAdmin</h2>
-            <p>layui 官方出品的单页面后台管理模板系统</p>
+            <h2>管理后台</h2>
         </div>
         @yield('content')
     </div>
 
     <div class="layui-trans layadmin-user-login-footer">
 
-        <p>© 2018 <a href="http://www.layui.com/" target="_blank">layui.com</a></p>
+        <p>© 2019 <a href="#" target="_blank">softsun tommorow</a></p>
         <p>
-            <span><a href="http://www.layui.com/admin/#get" target="_blank">获取授权</a></span>
-            <span><a href="http://www.layui.com/admin/pro/" target="_blank">在线演示</a></span>
-            <span><a href="http://www.layui.com/admin/" target="_blank">前往官网</a></span>
+            <span><a href="#" target="_blank">无</a></span>
         </p>
     </div>
 </div>

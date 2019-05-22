@@ -55,6 +55,19 @@
     </div>
 </div>
 <div class="layui-form-item">
+    <label for="" class="layui-form-label">是否显示</label>
+    <div class="layui-input-block">
+        <label><input type="radio" name="is_display" class="layui-input" value="1" title="显示" {{$permission->is_display=='1'?'checked':''}}></label>
+        <label><input type="radio" name="is_display" class="layui-input" value="0" title="不显示" {{$permission->is_display=='0'?'checked':''}}></label>
+    </div>
+</div>
+<div class="layui-form-item">
+    <label for="" class="layui-form-label">排序</label>
+    <div class="layui-input-block">
+        <input type="text" name="sort" value="{{$permission->sort??0}}" lay-verify="required" class="layui-input" placeholder="">
+    </div>
+</div>
+<div class="layui-form-item">
     <div class="layui-input-block">
         <button type="submit" class="layui-btn" lay-submit="" >确 认</button>
         <a href="{{route('admin.permission')}}" class="layui-btn"  >返 回</a>

@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
         //用户
         $user = \App\Models\User::create([
             'username' => 'root',
-            'phone' => '18908221080',
+            'phone' => '13333333333',
             'name' => '超级管理员',
             'email' => 'root@dgg.net',
             'password' => bcrypt('123456'),
@@ -86,12 +86,14 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'zixun.manage',
                 'display_name' => '资讯管理',
+                'is_display' => '0',
                 'route' => '',
                 'icon_id' => '100',
                 'child' => [
                     [
                         'name' => 'zixun.category',
                         'display_name' => '分类管理',
+                        'is_display' => '0',
                         'route' => 'admin.category',
                         'icon_id' => '29',
                         'child' => [
@@ -103,6 +105,7 @@ class UserTableSeeder extends Seeder
                     [
                         'name' => 'zixun.tag',
                         'display_name' => '标签管理',
+                        'is_display' => '0',
                         'route' => 'admin.tag',
                         'icon_id' => '15',
                         'child' => [
@@ -114,6 +117,7 @@ class UserTableSeeder extends Seeder
                     [
                         'name' => 'zixun.article',
                         'display_name' => '文章管理',
+                        'is_display' => '0',
                         'route' => 'admin.article',
                         'icon_id' => '89',
                         'child' => [
@@ -142,6 +146,7 @@ class UserTableSeeder extends Seeder
                     [
                         'name' => 'config.position',
                         'display_name' => '广告位置',
+                        'is_display' => '0',
                         'route' => 'admin.position',
                         'icon_id' => '30',
                         'child' => [
@@ -153,6 +158,7 @@ class UserTableSeeder extends Seeder
                     [
                         'name' => 'config.advert',
                         'display_name' => '广告信息',
+                        'is_display' => '0',
                         'route' => 'admin.advert',
                         'icon_id' => '107',
                         'child' => [
@@ -185,18 +191,21 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'message.manage',
                 'display_name' => '消息管理',
+                'is_display' => '0',
                 'route' => '',
                 'icon_id' => '24',
                 'child' => [
                     [
                         'name' => 'message.message.mine',
                         'display_name' => '我的消息',
+                        'is_display' => '0',
                         'route' => 'admin.message.mine',
                         'icon_id' => '124',
                     ],
                     [
                         'name' => 'message.message',
                         'display_name' => '消息管理',
+                        'is_display' => '0',
                         'route' => 'admin.message',
                         'icon_id' => '24',
                         'child' => [
@@ -213,6 +222,7 @@ class UserTableSeeder extends Seeder
             $p1 = \App\Models\Permission::create([
                 'name' => $pem1['name'],
                 'display_name' => $pem1['display_name'],
+                'is_display' => $pem1['is_display']??'1',
                 'route' => $pem1['route']??'',
                 'icon_id' => $pem1['icon_id']??1,
             ]);
@@ -226,6 +236,7 @@ class UserTableSeeder extends Seeder
                     $p2 = \App\Models\Permission::create([
                         'name' => $pem2['name'],
                         'display_name' => $pem2['display_name'],
+                        'is_display' => $pem2['is_display']??'1',
                         'parent_id' => $p1->id,
                         'route' => $pem2['route']??1,
                         'icon_id' => $pem2['icon_id']??1,
@@ -240,6 +251,7 @@ class UserTableSeeder extends Seeder
                             $p3 = \App\Models\Permission::create([
                                 'name' => $pem3['name'],
                                 'display_name' => $pem3['display_name'],
+                                'is_display' => $pem3['is_display']??'1',
                                 'parent_id' => $p2->id,
                                 'route' => $pem3['route']??'',
                                 'icon_id' => $pem3['icon_id']??1,
