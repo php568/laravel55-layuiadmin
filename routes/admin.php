@@ -173,6 +173,48 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::delete('advert/destroy', 'AdvertController@destroy')->name('admin.advert.destroy')->middleware('permission:config.advert.destroy');
     });
 });
+//产品管理
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'permission:product.manage']], function () {
+    //商品管理
+    Route::group(['middleware' => 'permission:product.goods'], function () {
+        Route::get('goods/data', 'GoodsController@data')->name('admin.goods.data');
+        Route::get('goods', 'GoodsController@index')->name('admin.goods');
+        //添加
+        Route::get('goods/create', 'GoodsController@create')->name('admin.goods.create')->middleware('permission:product.goods.create');
+        Route::post('goods/store', 'GoodsController@store')->name('admin.goods.store')->middleware('permission:product.goods.create');
+        //编辑
+        Route::get('goods/{id}/edit', 'GoodsController@edit')->name('admin.goods.edit')->middleware('permission:product.goods.edit');
+        Route::put('goods/{id}/update', 'GoodsController@update')->name('admin.goods.update')->middleware('permission:product.goods.edit');
+        //删除
+        Route::delete('goods/destroy', 'GoodsController@destroy')->name('admin.goods.destroy')->middleware('permission:product.goods.destroy');
+    });
+    //进货管理
+    Route::group(['middleware' => 'permission:product.incoming'], function () {
+        Route::get('incoming/data', 'IncomingController@data')->name('admin.incoming.data');
+        Route::get('incoming', 'IncomingController@index')->name('admin.incoming');
+        //添加
+        Route::get('incoming/create', 'IncomingController@create')->name('admin.incoming.create')->middleware('permission:product.incoming.create');
+        Route::post('incoming/store', 'IncomingController@store')->name('admin.incoming.store')->middleware('permission:product.incoming.create');
+        //编辑
+        Route::get('incoming/{id}/edit', 'IncomingController@edit')->name('admin.incoming.edit')->middleware('permission:product.incoming.edit');
+        Route::put('incoming/{id}/update', 'IncomingController@update')->name('admin.incoming.update')->middleware('permission:product.incoming.edit');
+        //删除
+        Route::delete('incoming/destroy', 'IncomingController@destroy')->name('admin.incoming.destroy')->middleware('permission:product.incoming.destroy');
+    });
+    //出货管理
+    Route::group(['middleware' => 'permission:product.output'], function () {
+        Route::get('output/data', 'OutputController@data')->name('admin.output.data');
+        Route::get('output', 'OutputController@index')->name('admin.output');
+        //添加
+        Route::get('output/create', 'OutputController@create')->name('admin.output.create')->middleware('permission:product.output.create');
+        Route::post('output/store', 'OutputController@store')->name('admin.output.store')->middleware('permission:product.output.create');
+        //编辑
+        Route::get('output/{id}/edit', 'OutputController@edit')->name('admin.output.edit')->middleware('permission:product.output.edit');
+        Route::put('output/{id}/update', 'OutputController@update')->name('admin.output.update')->middleware('permission:product.output.edit');
+        //删除
+        Route::delete('output/destroy', 'OutputController@destroy')->name('admin.output.destroy')->middleware('permission:product.output.destroy');
+    });
+});
 //会员管理
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'permission:member.manage']], function () {
     //账号管理

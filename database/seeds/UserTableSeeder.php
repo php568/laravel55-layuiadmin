@@ -189,6 +189,47 @@ class UserTableSeeder extends Seeder
                 ]
             ],
             [
+                'name' => 'product.manage',
+                'display_name' => '产品管理',
+                'route' => '',
+                'icon_id' => '106',
+                'child' => [
+                    [
+                        'name' => 'product.goods',
+                        'display_name' => '商品管理',
+                        'route' => 'admin.goods',
+                        'icon_id' => '10',
+                        'child' => [
+                            ['name' => 'product.goods.create', 'display_name' => '添加','route'=>'admin.goods.create'],
+                            ['name' => 'product.goods.edit', 'display_name' => '编辑商品','route'=>'admin.goods.edit'],
+                            ['name' => 'product.goods.destroy', 'display_name' => '删除商品','route'=>'admin.goods.destroy'],
+                        ]
+                    ],
+                    [
+                        'name' => 'product.incoming',
+                        'display_name' => '进货管理',
+                        'route' => 'admin.incoming',
+                        'icon_id' => '10',
+                        'child' => [
+                            ['name' => 'product.incoming.create', 'display_name' => '添加进货','route'=>'admin.incoming.create'],
+                            ['name' => 'product.incoming.edit', 'display_name' => '编辑进货','route'=>'admin.incoming.edit'],
+                            ['name' => 'product.incoming.destroy', 'display_name' => '删除进货','route'=>'admin.incoming.destroy'],
+                        ]
+                    ],
+                    [
+                        'name' => 'product.output',
+                        'display_name' => '出货管理',
+                        'route' => 'admin.member',
+                        'icon_id' => '10',
+                        'child' => [
+                            ['name' => 'product.output.create', 'display_name' => '添加出货','route'=>'admin.output.create'],
+                            ['name' => 'product.output.edit', 'display_name' => '编辑出货','route'=>'admin.output.edit'],
+                            ['name' => 'product.output.destroy', 'display_name' => '删除出货','route'=>'admin.output.destroy'],
+                        ]
+                    ],
+                ]
+            ],
+            [
                 'name' => 'message.manage',
                 'display_name' => '消息管理',
                 'is_display' => '0',

@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateIncomingTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('incoming', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('no',20)->comment('进货单号');
+            $table->timestamp('order_at')->comment('进货时间');
+            $table->string('name',30)->comment('名称');
+            $table->string('bn',30)->comment('货号');
+            $table->string('quantity',30)->comment('数量');
+            $table->string('price',30)->comment('价格');
+            $table->string('color',30)->default('')->comment('颜色');
+            $table->string('size',30)->default('')->comment('尺寸');
+            $table->string('style',30)->default('')->comment('款式');
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->unique(['no'], 'idx_no');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('incoming');
+    }
+}
