@@ -42,7 +42,6 @@
     var areaData = Area;
     var $form; var form; var $;
     var province_hidden, city_hidden, district_hidden;
-    var province_value, city_value, district_value;
 
     layui.use(['jquery', 'form', 'upload'],function () {
         $ = layui.jquery;
@@ -109,7 +108,6 @@
     function loadProvince() {
         var proHtml = '';
         for (var i = 0; i < areaData.length; i++) {
-            // if(areaData[i].provinceName == province_hidden) province_value = '' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i + '';
             proHtml += '<option value="' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i + '">' + areaData[i].provinceName + '</option>';
         }
         //初始化省数据
@@ -135,7 +133,7 @@
         var cityHtml = '';
         for (var i = 0; i < citys.length; i++) {
             // if(citys[i].cityName == city_hidden) city_value = '' + citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i + '';
-            cityHtml += '<option value="' + citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i +'">' + citys[i].cityName + '</option>';
+            cityHtml += '<option value="'+ citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i +'">' + citys[i].cityName + '</option>';
         }
         $form.find('select[name=city]').html(cityHtml);//.parent().show();
         // if(city_value) $('#city').val(city_value);
@@ -158,13 +156,21 @@
         var districtHtml = '';
         for (var i = 0; i < district.length; i++) {
             // if(district[i].areaName == district_hidden) district_value = '' + district[i].areaCode + '';
-            districtHtml += '<option value="' + district[i].areaCode + '">' + district[i].areaName + '</option>';
+            districtHtml += '<option value="' + district[i].areaCode + '_' + i + '">' + district[i].areaName + '</option>';
         }
-        $form.find('select[name=district]').html(districtHtml);//.parent().show();
-        // if(district_value) $('#district').val(district_value);
+        $form.find('select[name=district]').html(districtHtml);
         form.render();
         form.on('select(district)', function(data) {
+            var value = data.value;
+            var d = value.split('_');
+            var code = d[0];
+            var count = d[1];
+            var index = d[2];
+            if (count > 0) {
 
+            } else {
+
+            }
         });
     }
 </script>

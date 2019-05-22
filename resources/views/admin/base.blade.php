@@ -56,6 +56,7 @@
 
         //监听消息推送
         $(document).ready(function () {
+            /*
             // 连接服务端
             var socket = io("{{config('custom.PUSH_MESSAGE_LOGIN')}}");
             // 连接后登录
@@ -73,6 +74,7 @@
                     time: 5000
                 })
             });
+            */
         });
 
     });

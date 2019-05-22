@@ -42,7 +42,10 @@
 
 @section('script')
     @can('member.member')
+        <script type="text/javascript" src="/js/area.js"></script>//area.js存放省市县/区数据
         <script>
+            //初始数据
+            var areaData = Area;
             layui.use(['layer','table','form'],function () {
                 var layer = layui.layer;
                 var form = layui.form;
@@ -54,16 +57,44 @@
                     ,url: "{{ route('admin.member.data') }}" //数据接口
                     ,where:{model:"member"}
                     ,page: true //开启分页
+                    ,cellMinWidth: 80
                     ,cols: [[ //表头
                         {checkbox: true,fixed: true}
-                        ,{field: 'id', title: 'ID', sort: true,width:80}
+                        ,{field: 'id', title: 'ID', sort: true, width: 50}
                         ,{field: 'real_name', title: '姓名'}
-                        ,{field: 'phone', title: '手机号'}
+                        ,{field: 'phone', title: '手机号', width: 120}
                         ,{field: 'level', title: '级别'}
                         ,{field: 'sex', title: '性别'}
+                        ,{field: 'province', title: '省', templet: function(d){
+                                province_s = d.province.split('_');
+                                return areaData[province_s[2]].provinceName;
+                            }}
+                        ,{field: 'city', title: '市', templet: function(d){
+                                province_s = d.province.split('_');
+                                city_s = d.city.split('_');
+                                return areaData[province_s[2]].mallCityList[city_s[2]].cityName;
+                            }}
+                        ,{field: 'district', title: '区', templet: function(d){
+                                province_s = d.province.split('_');
+                                city_s = d.city.split('_');
+                                district_s = d.district.split('_');
+                                return areaData[province_s[2]].mallCityList[city_s[2]].mallAreaList[district_s[1]].areaName;
+                            }}
+                        ,{field: 'address', title: '详细地址'}
                         ,{field: 'created_at', title: '创建时间'}
                         ,{fixed: 'right', width: 120, align:'center', toolbar: '#options'}
-                    ]]
+                    ]],
+                     done: function(res, curr, count){
+                         //如果是异步请求数据方式，res即为你接口返回的信息。
+                         //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                         // console.log(res);
+
+                         //得到当前页码
+                         // console.log(curr);
+
+                         //得到数据总量
+                         // console.log(count);
+                     }
                 });
 
                 //监听工具条
