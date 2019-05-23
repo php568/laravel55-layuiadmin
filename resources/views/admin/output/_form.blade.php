@@ -9,7 +9,7 @@
     <div class="layui-inline">
         <label for="" class="layui-form-label">货号</label>
         <div class="layui-input-inline">
-            <input type="text" name="bn" value="{{ $output->bn ?? old('bn') }}" required="bn" placeholder="请输入货号" class="layui-input">
+            <input type="text" name="bn" value="{{ $output->bn ?? old('bn') }}" lay-verify="required" required="bn" placeholder="请输入货号" class="layui-input">
         </div>
     </div>
 </div>
@@ -33,13 +33,13 @@
     <div class="layui-inline">
         <label class="layui-form-label">数量</label>
         <div class="layui-input-inline">
-            <input type="text" name="quantity" value="{{$output->quantity??old('quantity')}}"  placeholder="请输入数量" class="layui-input">
+            <input type="text" name="quantity" value="{{$output->quantity??old('quantity')}}" lay-verify="required|numeric" placeholder="请输入数量" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">价格</label>
         <div class="layui-input-inline">
-            <input type="text" name="price" value="{{$output->price??old('sss')}}" placeholder="￥" class="layui-input">
+            <input type="text" name="price" value="{{$output->price??old('sss')}}" lay-verify="required|numeric" placeholder="￥" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
@@ -47,6 +47,35 @@
         <div class="layui-input-inline">
             <input type="text" name="order_at" id="order_at" value="{{date('Y-m-d', strtotime($output->order_at??old('order_at')))}}"  placeholder="yyyy-MM-dd" class="layui-input">
         </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">购买人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="buyer" value="{{$output->buyer??old('buyer')}}"  placeholder="请输入购买人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">联系电话</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phone" value="{{$output->phone??old('phone')}}"  placeholder="请输入联系电话" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">快递单号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="logi_no" value="{{$output->logi_no??old('logi_no')}}"  placeholder="请输入快递单号" class="layui-input">
+        </div>
+    </div>
+</div>
+
+
+<div class="layui-form-item">
+    <label class="layui-form-label">详细地址</label>
+    <div class="layui-input-block">
+        <input type="text" name="address" value="{{ $output->address ?? old('address') }}" placeholder="" autocomplete="off" class="layui-input">
     </div>
 </div>
 

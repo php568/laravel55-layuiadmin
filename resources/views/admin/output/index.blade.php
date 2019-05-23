@@ -82,9 +82,13 @@
                         ,{field: 'price', title: '价格', templet:function (d) {
                                 return fixed(d.price);
                             }}
-                        ,{field: 'order_at', title: '出货日期', templet:function (d) {
+                        ,{field: 'order_at', title: '出货日期', width: 120, templet:function (d) {
                                 return util.toDateString(d.order_at, "yyyy-MM-dd");
                             }}
+                        ,{field: 'buyer', title: '购买人'}
+                        ,{field: 'phone', title: '联系电话', width: 120}
+                        ,{field: 'logi_no', title: '快递单号', width: 120}
+                        ,{field: 'address', title: '地址', width: 120}
                         ,{fixed: 'right', width: 120, align:'center', toolbar: '#options'}
                     ]],
                      done: function(res, curr, count){

@@ -61,6 +61,10 @@ class OutputController extends Controller
             'quantity' => 'required|string|max:50',
             'price' => 'required|string|max:50',
             'order_at' => 'string',
+            'buyer' => 'string',
+            'phone' => 'string',
+            'logi_no' => 'string',
+            'address' => 'string',
         ]);
         $request['order_at'] = date('Y-m-d H:i:s', strtotime($request['order_at']));
         $request->merge(['no' => date('YmdHis').$this->getCounter()]);
@@ -90,7 +94,7 @@ class OutputController extends Controller
     public function update(Request $request, $id)
     {
         $output = Output::findOrFail($id);
-        $data = $request->only(['name','bn','color','size','style','quantity','price','order_at']);
+        $data = $request->only(['name','bn','color','size','style','quantity','price','order_at','buyer','phone','logi_no','address']);
         $data['order_at'] = date('Y-m-d H:i:s', strtotime($data['order_at']));
         if ($output->update($data)){
             return redirect()->to(route('admin.output'))->with(['status'=>'更新出货记录成功']);
