@@ -219,7 +219,7 @@ class UserTableSeeder extends Seeder
                     [
                         'name' => 'product.output',
                         'display_name' => '出货管理',
-                        'route' => 'admin.member',
+                        'route' => 'admin.output',
                         'icon_id' => '10',
                         'child' => [
                             ['name' => 'product.output.create', 'display_name' => '添加出货','route'=>'admin.output.create'],

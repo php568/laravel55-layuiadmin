@@ -21,13 +21,13 @@ class CreateOutputTable extends Migration
             $table->string('bn',30)->comment('货号');
             $table->string('quantity',30)->comment('数量');
             $table->string('price',30)->comment('价格');
-            $table->string('color',30)->comment('颜色');
-            $table->string('size',30)->comment('尺寸');
-            $table->string('style',30)->comment('款式');
-            $table->string('buyer',20)->comment('购买人');
-            $table->string('address',255)->comment('地址');
-            $table->string('phone',20)->comment('联系电话');
-            $table->string('logi_no',30)->comment('快递单号');
+            $table->string('color',30)->default('')->comment('颜色');
+            $table->string('size',30)->default('')->comment('尺寸');
+            $table->string('style',30)->default('')->comment('款式');
+            $table->string('buyer',20)->default('')->comment('购买人');
+            $table->string('address',255)->default('')->comment('地址');
+            $table->string('phone',20)->default('')->comment('联系电话');
+            $table->string('logi_no',30)->default('')->comment('快递单号');
             $table->softDeletes();
             $table->timestamps();
 

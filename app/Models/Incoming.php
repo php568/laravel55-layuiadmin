@@ -8,4 +8,5 @@ class Incoming extends Model
 {
     protected $table = 'incoming';
     protected $fillable = ['no','name','bn','quantity','price','color','size','style','order_at'];
+
 }

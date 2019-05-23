@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Incoming;
+use App\Models\Output;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IncomingController extends Controller
+class OutputController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -15,11 +15,11 @@ class IncomingController extends Controller
     */
     public function index()
     {
-        return view('admin.incoming.index');
+        return view('admin.output.index');
     }
     public function data(Request $request)
     {
-        $model = Incoming::query();
+        $model = Output::query();
         if ($request->get('name')){
             $model = $model->where('name','like','%'.$request->get('name').'%');
         }
@@ -42,7 +42,7 @@ class IncomingController extends Controller
      */
     public function create()
     {
-        return view('admin.incoming.create');
+        return view('admin.output.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -64,10 +64,10 @@ class IncomingController extends Controller
         ]);
         $request['order_at'] = date('Y-m-d H:i:s', strtotime($request['order_at']));
         $request->merge(['no' => date('YmdHis').$this->getCounter()]);
-        if (Incoming::create($request->all())){
-            return redirect(route('admin.incoming'))->with(['status'=>'添加完成']);
+        if (Output::create($request->all())){
+            return redirect(route('admin.output'))->with(['status'=>'添加完成']);
         }
-        return redirect(route('admin.incoming'))->with(['status'=>'系统错误']);
+        return redirect(route('admin.output'))->with(['status'=>'系统错误']);
     }
     /**
      * Show the form for editing the specified resource.
@@ -77,8 +77,8 @@ class IncomingController extends Controller
      */
     public function edit($id)
     {
-        $incoming = Incoming::findOrFail($id);
-        return view('admin.incoming.edit',compact('incoming'));
+        $output = Output::findOrFail($id);
+        return view('admin.output.edit',compact('output'));
     }
     /**
      * Update the specified resource in storage.
@@ -89,13 +89,13 @@ class IncomingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $incoming = Incoming::findOrFail($id);
+        $output = Output::findOrFail($id);
         $data = $request->only(['name','bn','color','size','style','quantity','price','order_at']);
         $data['order_at'] = date('Y-m-d H:i:s', strtotime($data['order_at']));
-        if ($incoming->update($data)){
-            return redirect()->to(route('admin.incoming'))->with(['status'=>'更新进货记录成功']);
+        if ($output->update($data)){
+            return redirect()->to(route('admin.output'))->with(['status'=>'更新出货记录成功']);
         }
-        return redirect()->to(route('admin.incoming'))->withErrors('系统错误');
+        return redirect()->to(route('admin.output'))->withErrors('系统错误');
     }
     /**
      * Remove the specified resource from storage.
@@ -109,7 +109,7 @@ class IncomingController extends Controller
         if (empty($ids)){
             return response()->json(['code'=>1,'msg'=>'请选择删除项']);
         }
-        if (Incoming::destroy($ids)){
+        if (Output::destroy($ids)){
             return response()->json(['code'=>0,'msg'=>'删除成功']);
         }
         return response()->json(['code'=>1,'msg'=>'删除失败']);
@@ -121,7 +121,7 @@ class IncomingController extends Controller
     public function getCounter(){
         $date = date('Ymd');
         $path = storage_path('logs');
-        $counterFile = $path."/incoming_".$date.".txt";
+        $counterFile = $path."/output_".$date.".txt";
         clearstatcache();
         if (!file_exists($counterFile)) {
             file_put_contents($counterFile, 0);

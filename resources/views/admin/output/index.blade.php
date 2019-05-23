@@ -4,13 +4,13 @@
     <div class="layui-card">
         <div class="layui-card-header layuiadmin-card-header-auto">
             <div class="layui-btn-group ">
-                @can('product.incoming.destroy')
+                @can('product.output.destroy')
                     <button class="layui-btn layui-btn-sm layui-btn-danger" id="listDelete">删除</button>
                 @endcan
-                @can('product.incoming.create')
-                    <a class="layui-btn layui-btn-sm" href="{{ route('admin.incoming.create') }}">添加</a>
+                @can('product.output.create')
+                    <a class="layui-btn layui-btn-sm" href="{{ route('admin.output.create') }}">添加</a>
                 @endcan
-                <button class="layui-btn layui-btn-sm" id="incomingSearch">搜索</button>
+                <button class="layui-btn layui-btn-sm" id="outputSearch">搜索</button>
             </div>
             <div class="layui-form">
                 <div class="layui-input-inline">
@@ -25,10 +25,10 @@
             <table id="dataTable" lay-filter="dataTable"></table>
             <script type="text/html" id="options">
                 <div class="layui-btn-group">
-                    @can('product.incoming.create')
+                    @can('product.output.create')
                         <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     @endcan
-                    @can('product.incoming.destroy')
+                    @can('product.output.destroy')
                         <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
                     @endcan
                 </div>
@@ -38,7 +38,7 @@
 @endsection
 
 @section('script')
-    @can('product.incoming')
+    @can('product.output')
         <script>
             function fixed(str) {
                 if (!str) str = '0.000';
@@ -67,8 +67,8 @@
                 var dataTable = table.render({
                     elem: '#dataTable'
                     ,height: 500
-                    ,url: "{{ route('admin.incoming.data') }}" //数据接口
-                    ,where:{model:"incoming"}
+                    ,url: "{{ route('admin.output.data') }}" //数据接口
+                    ,where:{model:"output"}
                     ,page: true //开启分页
                     ,cellMinWidth: 80
                     ,cols: [[ //表头
@@ -82,7 +82,7 @@
                         ,{field: 'price', title: '价格', templet:function (d) {
                                 return fixed(d.price);
                             }}
-                        ,{field: 'order_at', title: '进货日期', templet:function (d) {
+                        ,{field: 'order_at', title: '出货日期', templet:function (d) {
                                 return util.toDateString(d.order_at, "yyyy-MM-dd");
                             }}
                         ,{fixed: 'right', width: 120, align:'center', toolbar: '#options'}
@@ -105,7 +105,7 @@
                         ,layEvent = obj.event; //获得 lay-event 对应的值
                     if(layEvent === 'del'){
                         layer.confirm('确认删除吗？', function(index){
-                            $.post("{{ route('admin.incoming.destroy') }}",{_method:'delete',ids:[data.id]},function (result) {
+                            $.post("{{ route('admin.output.destroy') }}",{_method:'delete',ids:[data.id]},function (result) {
                                 if (result.code==0){
                                     obj.del(); //删除对应行（tr）的DOM结构
                                 }
@@ -114,7 +114,7 @@
                             });
                         });
                     } else if(layEvent === 'edit'){
-                        location.href = '/admin/incoming/'+data.id+'/edit';
+                        location.href = '/admin/output/'+data.id+'/edit';
                     }
                 });
 
@@ -130,7 +130,7 @@
                     }
                     if (ids.length>0){
                         layer.confirm('确认删除吗？', function(index){
-                            $.post("{{ route('admin.incoming.destroy') }}",{_method:'delete',ids:ids},function (result) {
+                            $.post("{{ route('admin.output.destroy') }}",{_method:'delete',ids:ids},function (result) {
                                 if (result.code==0){
                                     dataTable.reload()
                                 }
@@ -143,7 +143,7 @@
                     }
                 })
                 //搜索
-                $("#incomingSearch").click(function () {
+                $("#outputSearch").click(function () {
                     var userSign = $("#user_sign").val()
                     var name = $("#name").val();
                     var bn = $("#bn").val();
