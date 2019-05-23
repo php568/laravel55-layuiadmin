@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -17,7 +18,8 @@ class IndexController extends Controller
      */
     public function layout()
     {
-        return view('admin.layout');
+        $user = Auth::guard()->user();
+        return view('admin.layout',compact('user'));
     }
 
     /**
