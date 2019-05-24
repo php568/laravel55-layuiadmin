@@ -62,9 +62,19 @@ class IncomingController extends Controller
             'color' => 'string|max:50',
             'size' => 'string|max:50',
             'style' => 'string|max:50',
-            'quantity' => 'required|string|max:50',
-            'price' => 'required|string|max:50',
-            'order_at' => 'string',
+            'quantity' => 'required|numeric',
+            'price' => 'required|numeric',
+            'order_at' => 'string|date_format:Y-m-d',
+        ], [
+            'name.required' => '名称必填',
+            'name.max' => '名称不能超过50个字符',
+            'bn.required' => '货号必填',
+            'bn.max' => '货号不能超过50个字符',
+            'quantity.required' => '数量必填',
+            'quantity.numeric' => '数量必须是数字',
+            'price.required' => '价格必填',
+            'price.numeric' => '价格必须是数字',
+            'order_at.date_format' => '日期不匹配Y-m-d格式',
         ]);
         $request['order_at'] = date('Y-m-d H:i:s', strtotime($request['order_at']));
         $request->merge(['no' => date('YmdHis').$this->getCounter()]);
@@ -96,6 +106,26 @@ class IncomingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'name'  => 'required|string|max:50',
+            'bn'  => 'required|string|max:50',
+            'color' => 'string|max:50',
+            'size' => 'string|max:50',
+            'style' => 'string|max:50',
+            'quantity' => 'required|numeric',
+            'price' => 'required|numeric',
+            'order_at' => 'string|date_format:Y-m-d',
+        ], [
+            'name.required' => '名称必填',
+            'name.max' => '名称不能超过50个字符',
+            'bn.required' => '货号必填',
+            'bn.max' => '货号不能超过50个字符',
+            'quantity.required' => '数量必填',
+            'quantity.numeric' => '数量必须是数字',
+            'price.required' => '价格必填',
+            'price.numeric' => '价格必须是数字',
+            'order_at.date_format' => '日期不匹配Y-m-d格式',
+        ]);
         $incoming = Incoming::findOrFail($id);
         $data = $request->only(['name','bn','color','size','style','quantity','price','order_at']);
         $data['order_at'] = date('Y-m-d H:i:s', strtotime($data['order_at']));

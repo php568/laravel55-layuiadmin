@@ -55,6 +55,16 @@ class DictController extends Controller
             'value' => 'required|string|max:50',
             'sort' => 'integer|min:1',
             'desc' => 'string|max:100',
+        ], [
+            'group.required' => '组别必填',
+            'group.max' => '组别不能超过20个字符',
+            'code.required' => 'code码必填',
+            'code.max' => 'code码不能超过50个字符',
+            'value.required' => '字典值必填',
+            'value.max' => '字典值不能超过50个字符',
+            'sort.integer' => '排序必须为整数',
+            'sort.min' => '排序最小值应为1',
+            'desc.max' => '描述不能超过100个字符',
         ]);
         if (Dict::create($request->all())){
             return redirect(route('admin.dict'))->with(['status'=>'添加完成']);
@@ -81,6 +91,23 @@ class DictController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'group'  => 'required|string|max:20',
+            'code'  => 'required|string|max:50',
+            'value' => 'required|string|max:50',
+            'sort' => 'integer|min:1',
+            'desc' => 'string|max:100',
+        ], [
+            'group.required' => '组别必填',
+            'group.max' => '组别不能超过20个字符',
+            'code.required' => 'code码必填',
+            'code.max' => 'code码不能超过50个字符',
+            'value.required' => '字典值必填',
+            'value.max' => '字典值不能超过50个字符',
+            'sort.integer' => '排序必须为整数',
+            'sort.min' => '排序最小值应为1',
+            'desc.max' => '描述不能超过100个字符',
+        ]);
         $dict = Dict::findOrFail($id);
         $data = $request->only(['group','code','value','sort','desc']);
         if ($dict->update($data)){
