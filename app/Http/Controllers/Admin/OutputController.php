@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Dict;
 use App\Models\Output;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,10 @@ class OutputController extends Controller
      */
     public function create()
     {
-        return view('admin.output.create');
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.output.create',compact( ['color', 'size', 'style']));
     }
     /**
      * Store a newly created resource in storage.
@@ -82,7 +86,10 @@ class OutputController extends Controller
     public function edit($id)
     {
         $output = Output::findOrFail($id);
-        return view('admin.output.edit',compact('output'));
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.output.edit',compact(['output', 'color', 'size', 'style']));
     }
     /**
      * Update the specified resource in storage.

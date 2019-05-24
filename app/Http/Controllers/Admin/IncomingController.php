@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Dict;
 use App\Models\Incoming;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,10 @@ class IncomingController extends Controller
      */
     public function create()
     {
-        return view('admin.incoming.create');
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.incoming.create',compact( ['color', 'size', 'style']));
     }
     /**
      * Store a newly created resource in storage.
@@ -78,7 +82,10 @@ class IncomingController extends Controller
     public function edit($id)
     {
         $incoming = Incoming::findOrFail($id);
-        return view('admin.incoming.edit',compact('incoming'));
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.incoming.edit',compact(['incoming', 'color', 'size', 'style']));
     }
     /**
      * Update the specified resource in storage.

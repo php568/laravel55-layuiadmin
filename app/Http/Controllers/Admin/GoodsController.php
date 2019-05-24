@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Dict;
 use App\Models\Goods;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,10 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        return view('admin.goods.create');
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.goods.create',compact( ['color', 'size', 'style']));
     }
     /**
      * Store a newly created resource in storage.
@@ -73,7 +77,10 @@ class GoodsController extends Controller
     public function edit($id)
     {
         $goods = Goods::findOrFail($id);
-        return view('admin.goods.edit',compact('goods'));
+        $color = Dict::query()->where('group','product_color')->get();
+        $size = Dict::query()->where('group','product_size')->get();
+        $style = Dict::query()->where('group','product_style')->get();
+        return view('admin.goods.edit',compact( ['goods', 'color', 'size', 'style']));
     }
     /**
      * Update the specified resource in storage.
