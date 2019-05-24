@@ -23,11 +23,11 @@ class UserTableSeeder extends Seeder
 
         //用户
         $user = \App\Models\User::create([
-            'username' => 'root',
+            'username' => 'admin',
             'phone' => '13333333333',
             'name' => '超级管理员',
             'email' => 'root@dgg.net',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('admin123qwe'),
             'uuid' => \Faker\Provider\Uuid::uuid()
         ]);
 
