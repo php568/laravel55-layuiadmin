@@ -9,7 +9,7 @@
     <div class="layui-inline">
         <label for="" class="layui-form-label">货号</label>
         <div class="layui-input-inline">
-            <input type="text" name="bn" value="{{ $goods->bn ?? old('bn') }}" required="bn" placeholder="请输入货号" class="layui-input">
+            <input type="text" name="bn" value="{{ $goods->bn ?? old('bn') }}" lay-verify="required" placeholder="请输入货号" class="layui-input">
         </div>
     </div>
 </div>

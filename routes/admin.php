@@ -179,6 +179,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::group(['middleware' => 'permission:product.goods'], function () {
         Route::get('goods/data', 'GoodsController@data')->name('admin.goods.data');
         Route::get('goods', 'GoodsController@index')->name('admin.goods');
+        //弹窗列表
+        Route::get('goods/iframe', 'GoodsController@iframe')->name('admin.goods.iframe');
         //添加
         Route::get('goods/create', 'GoodsController@create')->name('admin.goods.create')->middleware('permission:product.goods.create');
         Route::post('goods/store', 'GoodsController@store')->name('admin.goods.store')->middleware('permission:product.goods.create');

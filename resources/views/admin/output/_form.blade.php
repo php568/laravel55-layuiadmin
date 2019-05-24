@@ -1,4 +1,14 @@
 {{csrf_field()}}
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label for="" class="layui-form-label">商品</label>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-lg" data-type="goods" id="LAY_layer_goods">点击选择商品</button>
+        </div>
+    </div>
+</div>
+
 <div class="layui-form-item">
     <div class="layui-inline">
         <label for="" class="layui-form-label">名称</label>
@@ -9,7 +19,7 @@
     <div class="layui-inline">
         <label for="" class="layui-form-label">货号</label>
         <div class="layui-input-inline">
-            <input type="text" name="bn" value="{{ $output->bn ?? old('bn') }}" lay-verify="required" required="bn" placeholder="请输入货号" class="layui-input">
+            <input type="text" name="bn" value="{{ $output->bn ?? old('bn') }}" lay-verify="required" placeholder="请输入货号" class="layui-input">
         </div>
     </div>
 </div>

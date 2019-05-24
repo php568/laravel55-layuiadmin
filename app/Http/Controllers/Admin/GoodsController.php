@@ -18,6 +18,17 @@ class GoodsController extends Controller
     {
         return view('admin.goods.index');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function iframe()
+    {
+        return view('admin.goods.iframe');
+    }
+
     public function data(Request $request)
     {
         $model = Goods::query();
