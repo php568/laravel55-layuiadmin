@@ -63,13 +63,13 @@
     <div class="layui-inline">
         <label class="layui-form-label">数量</label>
         <div class="layui-input-inline">
-            <input type="text" name="quantity" value="{{$incoming->quantity??old('quantity')}}"  placeholder="请输入数量" class="layui-input">
+            <input type="text" name="quantity" value="{{$incoming->quantity??old('quantity')}}" lay-verify="required|numeric" placeholder="请输入数量" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">价格</label>
         <div class="layui-input-inline">
-            <input type="text" name="price" value="{{$incoming->price??old('sss')}}" placeholder="￥" class="layui-input">
+            <input type="text" name="price" value="{{$incoming->price??old('sss')}}" lay-verify="required|numeric" placeholder="￥" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">

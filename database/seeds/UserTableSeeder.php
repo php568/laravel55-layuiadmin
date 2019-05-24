@@ -227,6 +227,17 @@ class UserTableSeeder extends Seeder
                             ['name' => 'product.output.destroy', 'display_name' => '删除出货','route'=>'admin.output.destroy'],
                         ]
                     ],
+                    [
+                        'name' => 'product.dict',
+                        'display_name' => '字典管理',
+                        'route' => 'admin.dict',
+                        'icon_id' => '10',
+                        'child' => [
+                            ['name' => 'product.dict.create', 'display_name' => '添加字典','route'=>'admin.dict.create'],
+                            ['name' => 'product.dict.edit', 'display_name' => '编辑字典','route'=>'admin.dict.edit'],
+                            ['name' => 'product.dict.destroy', 'display_name' => '删除字典','route'=>'admin.dict.destroy'],
+                        ]
+                    ],
                 ]
             ],
             [

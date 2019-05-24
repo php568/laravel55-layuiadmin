@@ -214,6 +214,19 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         //删除
         Route::delete('output/destroy', 'OutputController@destroy')->name('admin.output.destroy')->middleware('permission:product.output.destroy');
     });
+    //字典管理
+    Route::group(['middleware' => 'permission:product.dict'], function () {
+        Route::get('dict/data', 'DictController@data')->name('admin.dict.data');
+        Route::get('dict', 'DictController@index')->name('admin.dict');
+        //添加
+        Route::get('dict/create', 'DictController@create')->name('admin.dict.create')->middleware('permission:product.dict.create');
+        Route::post('dict/store', 'DictController@store')->name('admin.dict.store')->middleware('permission:product.dict.create');
+        //编辑
+        Route::get('dict/{id}/edit', 'DictController@edit')->name('admin.dict.edit')->middleware('permission:product.dict.edit');
+        Route::put('dict/{id}/update', 'DictController@update')->name('admin.dict.update')->middleware('permission:product.dict.edit');
+        //删除
+        Route::delete('dict/destroy', 'DictController@destroy')->name('admin.dict.destroy')->middleware('permission:product.dict.destroy');
+    });
 });
 //会员管理
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'permission:member.manage']], function () {
