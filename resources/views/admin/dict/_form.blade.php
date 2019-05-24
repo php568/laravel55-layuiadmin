@@ -3,7 +3,7 @@
     <div class="layui-inline">
         <label for="" class="layui-form-label">组别</label>
         <div class="layui-input-inline">
-            <input type="text" name="group" value="{{ $dict->group ?? old('group') }}" {{ !empty($dict->group) ? 'layui-disabled readonly disabled':'' }} lay-verify="required" placeholder="请输入组别" class="layui-input" >
+            <input type="text" name="group" value="{{ $dict->group ?? old('group') }}" {{ !empty($dict->group) ? ' layui-disabled readonly ':'' }} lay-verify="required" placeholder="请输入组别" class="layui-input" >
         </div>
     </div>
 </div>
