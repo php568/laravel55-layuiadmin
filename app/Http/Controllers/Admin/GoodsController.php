@@ -38,7 +38,7 @@ class GoodsController extends Controller
         if ($request->get('bn')){
             $model = $model->where('bn','like','%'.$request->get('bn').'%');
         }
-        $res = $model->orderBy('id','desc')->orderBy('created_at','desc')->paginate($request->get('limit',30))->toArray();
+        $res = $model->orderBy('id','desc')->paginate($request->get('limit',30))->toArray();
         $data = [
             'code' => 0,
             'msg'   => '正在请求中...',

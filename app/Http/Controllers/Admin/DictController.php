@@ -23,7 +23,7 @@ class DictController extends Controller
         if ($request->get('group')){
             $model = $model->where('group', $request->get('group'));
         }
-        $res = $model->orderBy('id','desc')->orderBy('created_at','desc')->paginate($request->get('limit',30))->toArray();
+        $res = $model->orderBy('id','desc')->orderBy('sort','desc')->paginate($request->get('limit',30))->toArray();
         $data = [
             'code' => 0,
             'msg'   => '正在请求中...',

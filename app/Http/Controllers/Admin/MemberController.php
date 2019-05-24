@@ -28,7 +28,7 @@ class MemberController extends Controller
         if ($request->get('phone')){
             $model = $model->where('phone','like','%'.$request->get('phone').'%');
         }
-        $res = $model->orderBy('created_at','desc')->paginate($request->get('limit',30))->toArray();
+        $res = $model->orderBy('id','desc')->paginate($request->get('limit',30))->toArray();
         $data = [
             'code' => 0,
             'msg'   => '正在请求中...',
