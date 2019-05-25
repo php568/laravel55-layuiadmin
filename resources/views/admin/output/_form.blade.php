@@ -4,7 +4,7 @@
     <div class="layui-inline">
         <label for="" class="layui-form-label">商品</label>
         <div class="layui-input-inline">
-            <button class="layui-btn layui-btn-lg" data-type="goods" id="LAY_layer_goods">点击选择商品</button>
+            <a class="layui-btn layui-btn-lg" data-type="goods" id="LAY_layer_goods">点击选择商品</a>
         </div>
     </div>
 </div>

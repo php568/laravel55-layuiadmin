@@ -78,19 +78,27 @@
                         var color = parent.layui.$('input[name=color]');
                         var size = parent.layui.$('input[name=size]');
                         var style = parent.layui.$('input[name=style]');
-                        for(var i = 0; i< color.length ;i++){
-                            color[i].removeAttribute('checked');
-                            if(data.color == color[i].value) color[i].setAttribute('checked', 'checked');
-                        }
-                        for(var i = 0; i< size.length ;i++){
-                            size[i].removeAttribute('checked');
-                            if(data.size == size[i].value) size[i].setAttribute('checked', 'checked');
-                        }
-                        for(var i = 0; i< style.length ;i++){
-                            style[i].removeAttribute('checked');
-                            if(data.style == style[i].value) style[i].setAttribute('checked', 'checked');
-                        }
-
+                        $(color).attr('checked',false);
+                        parent.layui.$.each(color,function (index,element) {
+                            console.log($(element).val());
+                            if(data.color == $(element).val()) {
+                                $(element).prop("checked", true);
+                            }
+                        });
+                        $(size).attr('checked',false);
+                        parent.layui.$.each(size,function (index,element) {
+                            console.log($(element).val());
+                            if(data.size == $(element).val()) {
+                                $(element).prop("checked", true);
+                            }
+                        });
+                        $(style).attr('checked',false);
+                        parent.layui.$.each(style,function (index,element) {
+                            console.log($(element).val());
+                            if(data.style == $(element).val()) {
+                                $(element).prop("checked", true);
+                            }
+                        });
                         parent.layui.form.render();
                         parent.layer.tips('选择成功', id, {
                             time: 5000

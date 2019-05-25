@@ -30,7 +30,7 @@
         <div class="layui-input-block">
             @if(isset($color))
                 @foreach($color as $item)
-                    <input type="radio" name="color" value="{{$item->value}}" title="{{$item->desc}}" @if(isset($incoming->color)&&$incoming->color==$item->value) checked @endif  layui-disabled readonly >
+                    <input type="radio" name="color" value="{{$item->value}}" title="{{$item->desc}}" lay-filter="color" @if(isset($incoming->color)&&$incoming->color==$item->value) checked @endif layui-disabled readonly >
                 @endforeach
             @else
                 <input type="text" name="color" value="{{$incoming->color??old('color')}}" placeholder="请输入颜色" class="layui-input">
@@ -45,7 +45,7 @@
         <div class="layui-input-block">
             @if(isset($size))
                 @foreach($size as $item)
-                    <input type="radio" name="size" value="{{$item->value}}" title="{{$item->desc}}" @if(isset($incoming->size)&&$incoming->size==$item->value) checked @endif  layui-disabled readonly >
+                    <input type="radio" name="size" value="{{$item->value}}" title="{{$item->desc}}" lay-filter="size" @if(isset($incoming->size)&&$incoming->size==$item->value) checked @endif layui-disabled readonly >
                 @endforeach
             @else
                 <input type="text" name="size" value="{{$incoming->size??old('size')}}" placeholder="请输入尺寸" class="layui-input">
@@ -60,7 +60,7 @@
         <div class="layui-input-block">
             @if(isset($style))
                 @foreach($style as $item)
-                    <input type="radio" name="style" value="{{$item->value}}" title="{{$item->desc}}" @if(isset($incoming->style)&&$incoming->style==$item->value) checked @endif  layui-disabled readonly >
+                    <input type="radio" name="style" value="{{$item->value}}" title="{{$item->desc}}" lay-filter="style" @if(isset($incoming->style)&&$incoming->style==$item->value) checked @endif layui-disabled readonly >
                 @endforeach
             @else
                 <input type="text" name="style" value="{{$incoming->style??old('style')}}"  placeholder="请输入款式" class="layui-input">
